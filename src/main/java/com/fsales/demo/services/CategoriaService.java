@@ -2,6 +2,7 @@ package com.fsales.demo.services;
 
 import com.fsales.demo.domain.Categoria;
 import com.fsales.demo.repositories.CategoriaRepository;
+import com.fsales.demo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,8 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     public Categoria buscar(Integer id) {
-        Categoria categoria = categoriaRepository.findById(id).orElse(null);
-        return categoria;
+
+        return categoriaRepository.findById(id).orElseThrow(() ->
+                new ObjectNotFoundException(" Objeto não encontrado Id: " + id + " Tipo: " + Categoria.class.getName()));
     }
 }

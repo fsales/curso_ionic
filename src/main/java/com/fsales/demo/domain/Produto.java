@@ -1,5 +1,7 @@
 package com.fsales.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,10 +22,11 @@ public class Produto implements Serializable {
 
     private Double preco;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "RL_PRODUTO_CATEGORIA",
-            joinColumns = @JoinColumn(name = "produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id"),
+            joinColumns = @JoinColumn(name = "produto_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "id"),
             uniqueConstraints = @UniqueConstraint(name = "UK_PRODUTO_CATEGORIA", columnNames = {"produto_id", "categoria_id"}))
     private List<Categoria> categorias = new ArrayList<>();
 
