@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TB_ESTADO")
+@Table(name = "TB_ESTADO", uniqueConstraints = @UniqueConstraint(name = "UK_ESTADO", columnNames = {"nome", "sigla"}))
 public class Estado implements Serializable {
     private static final long serialVersionUID = -4758950596714024312L;
 
@@ -15,7 +15,11 @@ public class Estado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String nome;
+
+    @Column(length = 2, unique = true)
+    private String sigla;
 
     @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades = new ArrayList<>();
@@ -24,8 +28,9 @@ public class Estado implements Serializable {
 
     }
 
-    public Estado(String nome) {
+    public Estado(String nome, String sigla) {
         this.nome = nome;
+        this.sigla = sigla;
     }
 
     public Long getId() {
@@ -42,6 +47,14 @@ public class Estado implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
     public List<Cidade> getCidades() {

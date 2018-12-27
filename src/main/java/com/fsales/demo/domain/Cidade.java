@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TB_CIDADE")
+@Table(name = "TB_CIDADE", uniqueConstraints = @UniqueConstraint(name = "UK_NOME_CIDADE_ESTADO", columnNames = {"nome", "id_estado"}))
 public class Cidade implements Serializable {
 
     private static final long serialVersionUID = 6530769241309525499L;
@@ -22,6 +22,10 @@ public class Cidade implements Serializable {
 
     public Cidade() {
 
+    }
+
+    public Cidade(String nome) {
+        this.nome = nome;
     }
 
     public Cidade(String nome, Estado estado) {
