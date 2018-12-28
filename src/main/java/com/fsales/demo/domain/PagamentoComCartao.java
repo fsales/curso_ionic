@@ -12,6 +12,10 @@ public class PagamentoComCartao extends Pagamento implements Serializable {
 
     private  Integer numeroParcelas;
 
+    public PagamentoComCartao(){
+
+    }
+
     public PagamentoComCartao(EstadoPagamento estado, Pedido pedido, Integer numeroParcelas) {
         super(estado, pedido);
 

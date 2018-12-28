@@ -31,7 +31,7 @@ public class Cliente implements Serializable {
     @ElementCollection
     @CollectionTable(name = "TB_TELEFONE")
     private final Set<String> telefones = new HashSet<>();
-    
+
     @OneToMany(mappedBy = "cliente")
     private final List<Pedido> pedidos = new ArrayList<>();
 

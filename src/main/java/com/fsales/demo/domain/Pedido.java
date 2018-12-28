@@ -32,6 +32,12 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
+    public Pedido(Date instante, Cliente cliente, Endereco enderecoEntrega) {
+        this.instante = instante;
+        this.cliente = cliente;
+        this.enderecoEntrega = enderecoEntrega;
+    }
+
     public Date getInstante() {
         return instante;
     }

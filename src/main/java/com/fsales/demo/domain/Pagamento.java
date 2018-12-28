@@ -9,22 +9,26 @@ import java.util.Objects;
 @Entity
 @Table(name = "TB_PAGAMENTO")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pagamento implements Serializable {
+public abstract class Pagamento implements Serializable {
 
     private static final long serialVersionUID = -3494603821320610614L;
 
     @Id
-    private  Long id;
+    private Long id;
 
-    private EstadoPagamento estado;
+    private Integer estado;
 
     @OneToOne
     @JoinColumn(name = "pedido_id")
     @MapsId
     private Pedido pedido;
 
+    public Pagamento() {
+
+    }
+
     public Pagamento(EstadoPagamento estado, Pedido pedido) {
-        this.estado = estado;
+        this.estado = estado == null ? null : estado.getCodigo();
         this.pedido = pedido;
     }
 
@@ -37,11 +41,11 @@ public class Pagamento implements Serializable {
     }
 
     public EstadoPagamento getEstado() {
-        return estado;
+        return EstadoPagamento.toEnum(estado);
     }
 
     public void setEstado(EstadoPagamento estado) {
-        this.estado = estado;
+        this.estado = estado == null ? null : estado.getCodigo();
     }
 
     public Pedido getPedido() {
