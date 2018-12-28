@@ -1,5 +1,7 @@
 package com.fsales.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class Estado implements Serializable {
     @Column(length = 2, unique = true)
     private String sigla;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "estado")
     private final List<Cidade> cidades = new ArrayList<>();
 

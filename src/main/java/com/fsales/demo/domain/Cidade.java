@@ -1,5 +1,7 @@
 package com.fsales.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class Cidade implements Serializable {
 
     private String nome;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ESTADO_ID", referencedColumnName = "ID")
     private Estado estado;

@@ -12,7 +12,7 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public Categoria buscar(Integer id) {
+    public Categoria buscar(Long id) {
 
         return categoriaRepository.findById(id).orElseThrow(() ->
                 new ObjectNotFoundException(" Objeto não encontrado Id: " + id + " Tipo: " + Categoria.class.getName()));
