@@ -14,11 +14,11 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
-    private  String nome;
+    private String nome;
 
-    private  String email;
+    private String email;
 
     private String cpfOrCnpj;
 
@@ -31,6 +31,9 @@ public class Cliente implements Serializable {
     @ElementCollection
     @CollectionTable(name = "TB_TELEFONE")
     private final Set<String> telefones = new HashSet<>();
+    
+    @OneToMany(mappedBy = "cliente")
+    private final List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {
     }
@@ -92,6 +95,10 @@ public class Cliente implements Serializable {
 
     public Set<String> getTelefones() {
         return telefones;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
     @Override
