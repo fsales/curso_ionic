@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TB_CIDADE", uniqueConstraints = @UniqueConstraint(name = "UK_NOME_CIDADE_ESTADO", columnNames = {"nome", "id_estado"}))
+@Table(name = "TB_CIDADE", uniqueConstraints = @UniqueConstraint(name = "UK_NOME_CIDADE_ESTADO", columnNames = {"NOME", "ESTADO_ID"}))
 public class Cidade implements Serializable {
 
     private static final long serialVersionUID = 6530769241309525499L;
@@ -17,7 +17,7 @@ public class Cidade implements Serializable {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "id_estado", referencedColumnName = "id")
+    @JoinColumn(name = "ESTADO_ID", referencedColumnName = "ID")
     private Estado estado;
 
     public Cidade() {

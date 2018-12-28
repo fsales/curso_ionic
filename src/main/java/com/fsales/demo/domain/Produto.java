@@ -25,10 +25,10 @@ public class Produto implements Serializable {
     @JsonBackReference
     @ManyToMany
     @JoinTable(name = "RL_PRODUTO_CATEGORIA",
-            joinColumns = @JoinColumn(name = "produto_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "id"),
-            uniqueConstraints = @UniqueConstraint(name = "UK_PRODUTO_CATEGORIA", columnNames = {"produto_id", "categoria_id"}))
-    private List<Categoria> categorias = new ArrayList<>();
+            joinColumns = @JoinColumn(name = "PRODUTO_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "CATEGORIA_ID", referencedColumnName = "ID"),
+            uniqueConstraints = @UniqueConstraint(name = "UK_PRODUTO_CATEGORIA", columnNames = {"PRODUTO_ID", "CATEGORIA_ID"}))
+    private final List<Categoria> categorias = new ArrayList<>();
 
     public Produto() {
 
